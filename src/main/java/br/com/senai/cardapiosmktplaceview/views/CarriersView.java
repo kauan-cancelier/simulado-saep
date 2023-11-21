@@ -20,6 +20,7 @@ import br.com.senai.cardapiosmktplaceview.model.User;
 import br.com.senai.cardapiosmktplaceview.service.CarryingService;
 import br.com.senai.cardapiosmktplaceview.service.DriverService;
 import br.com.senai.cardapiosmktplaceview.views.tables.DriversTableModel;
+import jakarta.annotation.PostConstruct;
 
 @Component
 public class CarriersView extends JFrame {
@@ -42,6 +43,13 @@ public class CarriersView extends JFrame {
 		this.lblCarrying.setText(carryingService.findBy(user.getId()).getName());
 		this.setVisible(true);
 	}
+
+	@PostConstruct
+	public void initialize() {
+		DriversTableModel model = new DriversTableModel(driverService.findAll());
+		tableDriver.setModel(model);
+	}
+	
 	
 	public CarriersView() {
 		setTitle("Tela transportadora");
