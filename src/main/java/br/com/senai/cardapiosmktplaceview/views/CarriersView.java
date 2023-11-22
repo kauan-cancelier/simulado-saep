@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.senai.cardapiosmktplaceview.model.Carrying;
 import br.com.senai.cardapiosmktplaceview.model.User;
 import br.com.senai.cardapiosmktplaceview.service.CarryingService;
 import br.com.senai.cardapiosmktplaceview.service.DriverService;
@@ -29,7 +30,7 @@ public class CarriersView extends JFrame {
 	
 	private JPanel contentPane;
 	
-	private JTable tableDriver;
+	private JTable tableDriver = new JTable();
 
 	private JLabel lblCarrying;
 	
@@ -40,7 +41,8 @@ public class CarriersView extends JFrame {
 	private CarryingService carryingService;
 	
 	public void showView(User user) {
-		this.lblCarrying.setText(carryingService.findBy(user.getId()).getName());
+		Carrying carrying = carryingService.findBy(user.getId());
+		this.lblCarrying.setText(carrying.getName());
 		this.setVisible(true);
 	}
 
@@ -50,21 +52,15 @@ public class CarriersView extends JFrame {
 		tableDriver.setModel(model);
 	}
 	
-	
 	public CarriersView() {
 		setTitle("Tela transportadora");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 411);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		DriversTableModel model = new DriversTableModel(driverService.findAll());
-		
-		tableDriver = new JTable(model);
-
 		setContentPane(contentPane);
-		
-		
+		contentPane.setLayout(null);
 		lblCarrying = new JLabel("Nome");
 		lblCarrying.setBounds(10, 11, 438, 32);
 		lblCarrying.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -103,5 +99,6 @@ public class CarriersView extends JFrame {
 					.addGap(25))
 		);
 		contentPane.setLayout(gl_contentPane);
+		setLocationRelativeTo(null);
 	}
 }

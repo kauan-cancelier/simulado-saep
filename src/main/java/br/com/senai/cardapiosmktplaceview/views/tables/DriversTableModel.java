@@ -2,6 +2,7 @@ package br.com.senai.cardapiosmktplaceview.views.tables;
 
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import br.com.senai.cardapiosmktplaceview.model.Driver;
@@ -10,7 +11,7 @@ public class DriversTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 
-	private final int COLUMN_QTDE = 2;
+	private final int COLUMN_QTDE = 4;
 
 	private List<Driver> driver;
 
@@ -45,7 +46,7 @@ public class DriversTableModel extends AbstractTableModel {
 		} else if (columnIndex == 2) {
 			return driver.get(rowIndex).getCnh();
 		} else if (columnIndex == 3) {
-			return "Visualizar | Excluir";
+			return driver.get(rowIndex);
 		}
 		throw new IllegalArgumentException("Índice inválido");
 	}

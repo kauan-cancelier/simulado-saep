@@ -15,6 +15,7 @@ public class UserService {
 	private UserRepository repository;
 	
 	public User login(String email, String password) {
-		return repository.findUserBy(email, password);
+		User user = repository.findUserBy(email, password);
+		return user;
 	}
 }

@@ -6,13 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -66,14 +64,10 @@ private static final long serialVersionUID = 1L;
 		JButton btnLogar = new JButton("Logar");
 		btnLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					User user = service.login(edtLogin.getText(), new String(edtSenha.getPassword()));
-					edtLogin.setText("");
-					edtSenha.setText("");
-					carriersView.showView(user);
-				}catch (Exception ex) {
-					JOptionPane.showMessageDialog(contentPane, ex.getMessage());
-				}
+				User user = service.login(edtLogin.getText(), new String(edtSenha.getPassword()));
+				edtLogin.setText("");
+				edtSenha.setText("");
+				carriersView.showView(user);
 			
 			}
 		});
